@@ -371,7 +371,6 @@
   .success h3{ font-size:1.5rem; color:var(--cream); margin-bottom:12px; }
   .success p{ color:var(--muted); max-width:420px; margin:0 auto; font-size:0.98rem; }
   .success .note{ margin-top:22px; font-size:0.78rem; color:var(--muted-2); border-top:1px dashed var(--card-line); padding-top:18px; }
-  .success .again{ margin-top:26px; display:inline-block; font-size:0.85rem; font-weight:700; color:var(--gold); text-decoration:underline; cursor:pointer; background:none; border:none; font-family:var(--font-text); }
 
   /* footer */
   footer{ padding:48px 24px; text-align:center; border-top:1px solid var(--hair); }
@@ -840,13 +839,8 @@
           '<div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>' +
           '<h3>Você entrou na fila.</h3>' +
           '<p>' + esc(firstName) + ', nossa equipe vai avaliar seu perfil e entrar em contato pelo WhatsApp assim que as vagas de franquia forem abertas.</p>' +
-          '<div class="note">Nossa equipe recebe um alerta assim que voce se cadastra. <button type="button" class="again" id="wizardAgain">Enviar outro cadastro</button></div>' +
+          '<div class="note">Nossa equipe recebe um alerta assim que voce se cadastra.</div>' +
         '</div>';
-      document.getElementById('wizardAgain').addEventListener('click', function(){
-        answers = emptyAnswers();
-        step = 0;
-        render();
-      });
     }
 
     render();
