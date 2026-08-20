@@ -1,0 +1,20 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      - WHATSAPP_PROVIDER=${WHATSAPP_PROVIDER:-callmebot}
+      - CALLMEBOT_PHONE=${CALLMEBOT_PHONE}
+      - CALLMEBOT_APIKEY=${CALLMEBOT_APIKEY}
+    expose:
+      - "3000"

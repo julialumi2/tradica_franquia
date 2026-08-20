@@ -821,6 +821,12 @@
           list.push(Object.assign({}, answers, { enviadoEm: new Date().toISOString() }));
           localStorage.setItem('tradica_waitlist', JSON.stringify(list));
         }catch(_){ /* localStorage indisponível, segue sem persistir */ }
+        fetch('/api/notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(answers)
+        }).catch(function(){ /* alerta e best-effort, nao bloqueia o cadastro */ });
+
         step = SUCCESS_STEP;
         render();
       });
@@ -834,7 +840,7 @@
           '<div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>' +
           '<h3>Você entrou na fila.</h3>' +
           '<p>' + esc(firstName) + ', nossa equipe vai avaliar seu perfil e entrar em contato pelo WhatsApp assim que as vagas de franquia forem abertas.</p>' +
-          '<div class="note">Este formulário ainda não está conectado a um sistema de envio — seu cadastro foi salvo apenas neste navegador. <button type="button" class="again" id="wizardAgain">Enviar outro cadastro</button></div>' +
+          '<div class="note">Nossa equipe recebe um alerta assim que voce se cadastra. <button type="button" class="again" id="wizardAgain">Enviar outro cadastro</button></div>' +
         '</div>';
       document.getElementById('wizardAgain').addEventListener('click', function(){
         answers = emptyAnswers();
