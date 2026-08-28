@@ -16,5 +16,12 @@ services:
       - WHATSAPP_PROVIDER=${WHATSAPP_PROVIDER:-callmebot}
       - CALLMEBOT_PHONE=${CALLMEBOT_PHONE}
       - CALLMEBOT_APIKEY=${CALLMEBOT_APIKEY}
+      - LEADS_PASSWORD=${LEADS_PASSWORD}
+      - DATA_DIR=/data
+    volumes:
+      - leads_data:/data
     expose:
       - "3000"
+
+volumes:
+  leads_data:
